@@ -1,14 +1,14 @@
-# YouTube Song Transcriber for Genius.com
+# YouTube Video Transcriber
 
-A Python tool to generate high-accuracy, line-by-line lyrics transcripts from YouTube songs, perfect for adding content to Genius.com.
+A Python tool to generate high-accuracy, line-by-line transcripts from any YouTube video with audio. While optimized for song lyrics, it works great for podcasts, interviews, lectures, and other speech content.
 
 ## Features
 
-- Downloads and transcribes YouTube videos to lyrics format
+- Downloads and transcribes any YouTube videos with audio
 - Shows progress bars for download and transcription
-- Intelligently formats lyrics with natural line breaks
+- Intelligently formats content with natural line breaks
 - Supports multiple Whisper model sizes for different accuracy levels
-- Optimized for music and lyrics transcription
+- Special optimization for music and lyrics transcription
 - Parallel processing using multiple CPU cores
 - GPU acceleration with CUDA support
 - Fast mode for quicker transcription
@@ -43,6 +43,14 @@ Basic usage:
 python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 ```
 
+The tool works with any YouTube content containing speech or music:
+- Song lyrics
+- Podcasts
+- Interviews
+- Lectures
+- Speeches
+- Any other audio content
+
 ### Options
 
 | Flag                    | Shortcut | Description                                                  | Default |
@@ -63,19 +71,19 @@ python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
 ### Examples
 
-Transcribe song with higher accuracy for Genius.com:
+Transcribe content with higher accuracy:
 ```bash
-python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -m large -o lyrics.txt
+python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -m large -o transcript.txt
 ```
 
 Customize line breaks with longer pauses:
 ```bash
-python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --min-line-duration 2.0 -o lyrics.txt
+python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --min-line-duration 2.0 -o transcript.txt
 ```
 
 Get raw data with timestamps:
 ```bash
-python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --raw-data -o lyrics.txt
+python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --raw-data -o transcript.txt
 ```
 
 ### Performance Optimization Examples
@@ -124,7 +132,7 @@ python transcribe.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -v --log-file
 
 ### For Genius.com Users
 
-This tool is optimized for creating lyrics for Genius.com:
+This tool is specially optimized for creating lyrics for Genius.com:
 
 1. Lines are intelligently separated based on natural pauses in the song
 2. Default model is set to "medium" for better lyrics accuracy
@@ -178,18 +186,13 @@ uv pip install -r requirements.txt
 ## Notes
 
 - The script requires an internet connection to download the YouTube video and (first time only) to download the Whisper model.
-- For song lyrics, the "medium" or "large" model provides much better accuracy and is highly recommended.
-- Adjust the `--min-line-duration` parameter for different song styles:
-  - Faster songs: try lower values (0.8-1.2 seconds)
-  - Slower songs: try higher values (2.0-3.0 seconds)
+- For transcribing speech (interviews, lectures, etc.), the "base" or "small" model often provides sufficient accuracy
+- For song lyrics, the "medium" or "large" model provides much better accuracy and is highly recommended
+- Adjust the `--min-line-duration` parameter based on content type:
+  - Fast speech or songs: try lower values (0.8-1.2 seconds)
+  - Slow speech or songs: try higher values (2.0-3.0 seconds)
 - Progress bars show download and transcription progress in real-time
 - Additional dependencies: For parallel processing, you need to install `librosa` (`pip install librosa`) 
-
-## Sample Output
-
-![Sample Lyrics Output](sample_output.png)
-
-*Add an image of sample output here showing the formatted lyrics from a transcription.*
 
 ## Contributing
 
